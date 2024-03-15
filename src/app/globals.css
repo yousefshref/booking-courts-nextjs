@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Show scrollbar when scrolling */
+html:hover {
+  scrollbar-width: auto; /* Firefox */
+  -ms-overflow-style: auto; /* IE and Edge */
+}
+
+@font-face {
+  font-family: "arabic";
+  src: url("/arabic.otf") format("opentype");
+}
+@font-face {
+  font-family: "arabic_light";
+  src: url("/ar.ttf");
+}
+
+body {
+  direction: rtl;
+  color: rgb(41, 41, 41);
+  font-family: "arabic", sans-serif;
+  overflow-x: hidden;
+}
+
+h1 {
+  @apply text-6xl;
+}
+
+h3 {
+  @apply md:text-4xl text-3xl;
+}
+
+button {
+  @apply transition-all duration-300;
+}
+
+input,
+textarea,
+select {
+  @apply p-3 rounded-md shadow-md transition-all duration-500 hover:shadow-xl focus:shadow-lg border outline-none focus:border-indigo-500 w-full;
+}
+
+/* classes */
+
+.animatedForm {
+  animation: formDisplay 3s;
+}
+
+.font_light {
+  font-family: "arabic_light", sans-serif;
+}
+
+.indigo-triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid #9f62eec9; /* Change this to the desired color */
+  scale: calc(2000%);
+}
+
+.glowing-border {
+  animation: glowing 3s infinite;
+}
+
+.icon_moving {
+  animation: icon_moving 3s infinite;
+}
+
+.btn-prim-rounded {
+  @apply rounded-full bg-indigo-500 hover:bg-indigo-400 p-3 px-5 text-white;
+}
+
+.smooth-transparent-div::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust the height of the transparent area */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  ); /* Use linear gradient to create a smooth transparent effect */
+  pointer-events: none; /* Ensure clicks pass through the pseudo-element */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.closeBtn {
+  @apply p-1 w-fit rounded-full bg-red-700 transition-all hover:bg-red-600 cursor-pointer flex text-white absolute top-1 right-1;
+}
+
+.successBtn {
+  @apply p-1 rounded-md text-center bg-green-500 transition-all hover:bg-green-600 cursor-pointer flex text-white w-full justify-center self-center max-w-xs;
+}
+.errorBtn {
+  @apply p-1 rounded-md text-center bg-red-500 transition-all hover:bg-red-600 cursor-pointer flex text-white w-full justify-center self-center max-w-xs;
+}
+.searchBtn {
+  @apply p-1 rounded-md text-center border border-blue-400 hover:bg-blue-200 transition-all cursor-pointer flex w-full justify-center self-center max-w-xs;
+}
+
+.ffg-1 {
+  @apply flex flex-col gap-1 w-full max-w-xs my-auto;
+}
+.ffg-3 {
+  @apply flex flex-col gap-3 w-full max-w-xs my-auto;
+}
+.ffg-5 {
+  @apply flex flex-col gap-5 w-full max-w-xs my-auto;
+}
+
+.courtsHeaderAnimation {
+  animation: courtsHeaderAnimationFrames 3s infinite both;
+}
+.animateToTop {
+  animation: animateToTop 3s;
+}
+
+/* keyframes */
+@keyframes animateToTop {
+  0% {
+    @apply mt-5 opacity-0;
+  }
+  100% {
+    @apply mt-0 opacity-100;
+  }
+}
+@keyframes courtsHeaderAnimationFrames {
+  0% {
+    @apply bg-indigo-100;
+  }
+  50% {
+    @apply bg-sky-100;
+  }
+  75% {
+    @apply bg-blue-100;
+  }
+  100% {
+    @apply bg-indigo-100;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 10px rgba(89, 0, 255, 0.363);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(89, 0, 255, 0.726);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(89, 0, 255, 0.377);
+  }
+}
+
+@keyframes formDisplay {
+  0% {
+    @apply mt-8 opacity-0;
+  }
+  100% {
+    @apply mt-0 opacity-100;
+  }
+}
+
+@keyframes icon_moving {
+  0% {
+    @apply ms-2;
+  }
+  50% {
+    @apply ms-0;
+  }
+  100% {
+    @apply ms-2;
+  }
+}
