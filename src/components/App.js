@@ -4,10 +4,13 @@ import { Alert } from '@mui/material'
 import React, { useContext } from 'react'
 import { FaCheck } from 'react-icons/fa6'
 import Loading from '@/components/Utlits/Loading'
+import { AuthContextProvider } from '@/contexts/AuthContext'
+import Message from './Utlits/Message'
 
 
 const App = ({ children }) => {
   const bookContext = useContext(BooksContextProvider)
+  const authContext = useContext(AuthContextProvider)
 
   return (
     <div>
@@ -21,6 +24,11 @@ const App = ({ children }) => {
           </Alert>
         </div>
       }
+
+      {/* message */}
+      <Message message={authContext?.message} display={authContext?.messageDisplay} />
+
+
       {/* {
         bookContext?.loading &&
         <Loading />

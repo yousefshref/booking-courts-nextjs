@@ -22,12 +22,12 @@ const Courts = () => {
   return (
     <div className='w-full max-w-5xl mx-auto  p-5'>
       {/* search */}
-      <div className='flex flex-col animateToTop gap-3'>
+      <div id='courtContiner' className='flex flex-col animateToTop gap-3'>
         <div className='prices flex flex-col gap-2'>
           <p>السعر</p>
           <div className='flex gap-3'>
-            <input placeholder='ادني سعر' onChange={courtContext?.setPriceFrom} value={courtContext?.priceFrom} type="number" />
-            <input placeholder='اقصي سعر' onChange={courtContext?.setPriceFrom} value={courtContext?.priceFrom} type="number" />
+            <input placeholder='ادني سعر' onChange={(e) => courtContext?.setPriceFrom(e.target.value)} value={courtContext?.priceFrom} type="number" />
+            <input placeholder='اقصي سعر' onChange={(e) => courtContext?.setPriceTo(e.target.value)} value={courtContext?.priceTo} type="number" />
           </div>
         </div>
         <hr className='my-2 p-[0.5px] bg-indigo-500' />
@@ -112,10 +112,11 @@ const Courts = () => {
               <CourtComponent court={court} key={court?.id} />
             ))
             :
-            <div className='p-5 w-full h-[300px] flex flex-col justify-center'>
-              <div className='mx-auto'>
+            <div className='w-fill errorContainer'>
+              <p>لا يوجد ملاعب</p>
+              {/* <div className='mx-auto'>
                 <LoadingComponent withText={true} />
-              </div>
+              </div> */}
             </div>
         }
       </div>

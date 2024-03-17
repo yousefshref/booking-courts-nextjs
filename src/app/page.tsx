@@ -12,10 +12,12 @@ import { CgClose } from "react-icons/cg";
 import { CourtsContextProvider } from "@/contexts/CourtsContext";
 import CourtComponent from "../components/Court/CourtComponent";
 import Link from "next/link";
+import { AuthContextProvider } from "@/contexts/AuthContext";
 
 export default function Home() {
 
   const courtContext = useContext(CourtsContextProvider)
+  const userContext = useContext(AuthContextProvider)
 
   const workFlowArray = [
     {
@@ -25,7 +27,7 @@ export default function Home() {
       description: 'هناك العديد من الملاعب, كره القدم التنس كرة السلة, اشعر بالاريحية وانت تختار ملعب بناء علي طلباتك.',
       btn_icon: <TfiSearch />,
       btn_title: 'اكتشف الملاعب',
-      href: `/courts`
+      href: userContext?.user?.id ? `/courts` : '/auth/login'
     },
     {
       id: 1,
@@ -34,7 +36,7 @@ export default function Home() {
       description: 'بعد الانتهاء من الحجز سوف يكون من السهل عليك تتبع الحجز وسهولة التعديل عليه حسب رغباتك.',
       btn_icon: <MdOutlineLibraryBooks />,
       btn_title: 'حجوزاتك',
-      href: `/`
+      href: userContext?.user?.id ? `/profile` : '/auth/login'
     },
     {
       id: 2,

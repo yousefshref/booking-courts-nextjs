@@ -5,7 +5,6 @@ import { server } from '../../server'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { CourtsContextProvider } from './CourtsContext'
 import { AuthContextProvider } from './AuthContext'
-import { tConvert } from '@/utlits/Functions'
 
 const BooksContext = ({ children }) => {
   const [loading, setloading] = useState(true)
@@ -36,18 +35,14 @@ const BooksContext = ({ children }) => {
   const [books, setBooks] = useState([])
   const [times, setTimes] = useState([])
 
-  const getBooks = async () => {
-    setloading(true)
-    const res = await axios.get(`${server}books/?date_from=${dateFrom}&date_to=${dateTo}`, {
+  const getBooks = async (bookfrom, bookto) => {
+    const res = await axios.get(`${server}books/?date_from=${bookfrom ?? ''}&date_to=${bookto ?? ''}`, {
       headers: {
         Authorization: `Token ${localStorage.getItem('token')}`
       }
     })
-    setBooks(res.data.books)
     setTimes(res.data.times)
-    if (res.data) {
-      setloading(false)
-    }
+    return await res.data.times
   }
 
   useEffect(() => {
@@ -172,9 +167,10 @@ const BooksContext = ({ children }) => {
     })
     if (resTime.data) {
       getTime(resTime.data.id)
-      courtContext?.getCourt()
+      // courtContext?.getCourt()
       courtContext?.getCourtBooks(resTime.data.book_time.court)
     }
+
 
     // overTime
     if (overTime?.book_from) {
@@ -189,9 +185,11 @@ const BooksContext = ({ children }) => {
           Authorization: `Token ${localStorage.getItem('token')}`
         }
       })
-      console.log(resOverTime.data);
     }
-    setDeleteOpenMessage('تم حفظ التعديلات')
+    userContext?.setMessage('تم التعديل بنجاح')
+    userContext?.setMessageDisplay('yes')
+
+    return await resTime.data
   }
 
 
@@ -310,6 +308,8 @@ const BooksContext = ({ children }) => {
     <BooksContextProvider.Provider
       value={{
         err,
+
+        getBooks,
 
         dateFrom,
         dateTo,

@@ -36,41 +36,6 @@ export const convertTo24HourFormat = (timeStr) => {
 
 
 
-function debounceScroll(targetDiv) {
-  let timeout;
-  return () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      targetDiv.scrollIntoView({ behavior: "smooth" });
-    }, 1000); // Adjust delay as needed
-  };
-}
-
-
-export const handleAddParam = (paramName, paramValue, router, nowY) => {
-  const url = new URL(window.location.href);
-  const currentParams = new URLSearchParams(url.search);
-
-  if (currentParams.has(paramName)) {
-    currentParams.set(paramName, paramValue); // Update existing param value
-  } else {
-    currentParams.append(paramName, paramValue); // Add new param
-  }
-
-  url.search = currentParams.toString();
-  router.push(url.toString())
-
-  if (nowY == undefined) {
-    const targetDiv = document.getElementById('courts');
-    const debouncedScroll = debounceScroll(targetDiv);
-    debouncedScroll();
-  } else {
-    setTimeout(() => {
-      window.scrollTo(0, nowY)
-    }, 100)
-  }
-};
-
 
 
 

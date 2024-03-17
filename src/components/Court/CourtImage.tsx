@@ -9,10 +9,10 @@ import { server } from '../../../server';
 const CourtImage = ({ court }: any) => {
   const [activeImage, setActiveImage] = useState<any>(null)
   useEffect(() => {
-    if (court?.id) {
+    if (court?.court_image) {
       setActiveImage(court?.court_image[0])
     }
-  }, [court])
+  }, [court, court?.court_image])
   const [openImage, setOpenImage] = useState(false)
 
   useEffect(() => {

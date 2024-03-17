@@ -2,9 +2,23 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
 import { server } from '../../server'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 const AuthContext = ({ children }) => {
+
+  const path = usePathname()
+
+  const [message, setMessage] = useState('')
+  const [messageDisplay, setMessageDisplay] = useState('no')
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessageDisplay('no')
+    }, 3000)
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [messageDisplay])
 
   const [err, setErr] = useState()
 
@@ -31,8 +45,14 @@ const AuthContext = ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       getUser()
+    } else {
+      if (path == '/' || path == '/auth/register') {
+
+      } else {
+        router.push('/auth/login')
+      }
     }
-  }, [])
+  }, [path])
 
 
 
@@ -104,6 +124,12 @@ const AuthContext = ({ children }) => {
         logoutFunction,
 
         getUser,
+
+
+        message,
+        setMessage,
+        messageDisplay,
+        setMessageDisplay,
       }}
     >
       {children}

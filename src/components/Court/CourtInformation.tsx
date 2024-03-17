@@ -52,17 +52,20 @@ const CourtInformation = ({ court }: any) => {
                       أحجز
                     </Button>
                   </Link>
-                  <Button
-                    startIcon={<BiBook />}
-                    className="flex gap-2 font_light"
-                    variant="outlined"
-                    color='secondary'
-                    size="large"
-                    href=""
-                    onClick={() => setBooksOpen(court?.id)}
-                  >
-                    حجوزات اليوم
-                  </Button>
+                  {
+                    userContext?.user?.is_staff || userContext?.user?.is_superuser &&
+                    <Button
+                      startIcon={<BiBook />}
+                      className="flex gap-2 font_light"
+                      variant="outlined"
+                      color='secondary'
+                      size="large"
+                      href=""
+                      onClick={() => setBooksOpen(court?.id)}
+                    >
+                      حجوزات اليوم
+                    </Button>
+                  }
                 </div>
               )
             }

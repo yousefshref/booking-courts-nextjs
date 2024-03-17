@@ -20,7 +20,7 @@ import { BooksContextProvider } from "@/contexts/BooksContext";
 import { IoMdRepeat } from "react-icons/io";
 import { CourtsContextProvider } from "@/contexts/CourtsContext";
 
-const Book = ({ book, court }: any) => {
+const Book = ({ book, court, getStaffs, getBooks }: any) => {
   // open edit
   const [editOpen, setEditOpen] = useState(false);
 
@@ -69,10 +69,9 @@ const Book = ({ book, court }: any) => {
   const can_delete = bookContext?.can_delete
 
 
-
   return (
     <div
-      className="bookContainer w-full max-w-xs flex flex-col gap-2"
+      className={`bookContainer ${book?.is_cancelled ? 'border border-red-500' : ''} w-full max-w-xs flex flex-col gap-2`}
     >
       <div onClick={() => setEditOpen(book?.id)} className="book from-indigo-50 to-blue-50 bg-gradient-to-tr shadow-md transition-all hover:shadow-lg p-3 w-full h-fit cursor-pointer flex flex-col gap-1">
         <div className="tims flex justify-between">
@@ -140,6 +139,9 @@ const Book = ({ book, court }: any) => {
         </div>
         <div className="total">
           <p><span className="text-2xl">{book?.total_price}</span> EGP</p>
+        </div>
+        <div>
+          <small>{book?.book_time?.book_date}</small>
         </div>
       </div>
 
@@ -510,11 +512,14 @@ const Book = ({ book, court }: any) => {
           <div className="mt-auto">
             <hr className="my-3 p-[0.5px] bg-indigo-500" />
             <div className="flex gap-4 justify-between relative">
-              <button onClick={(e: any) => bookContext?.updateBook(
-                e, name, phone, book?.book_time?.id,
-                bookToDate, eventValue, withBallValue, isPaiedValue, paiedWithValue, selectedTools, isCancelled, isCancelledDay,
-                overTime, book?.id
-              )} className="successBtn">حسنا</button>
+              <button id="timeUpdate" onClick={(e: any) => {
+                bookContext?.updateBook(
+                  e, name, phone, book?.book_time?.id,
+                  bookToDate, eventValue, withBallValue, isPaiedValue, paiedWithValue, selectedTools, isCancelled, isCancelledDay,
+                  overTime, book?.id
+                ).then((e: any) => (e.id && getStaffs && getStaffs() || e.id && getBooks && getBooks()))
+              }
+              } className="successBtn">حسنا</button>
               <button onClick={() => setEditOpen(false)} className="errorBtn">الغاء</button>
             </div>
           </div>

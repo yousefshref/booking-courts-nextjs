@@ -83,11 +83,8 @@ const CourtsContext = ({ children }) => {
         }
       })
       setCourt(res.data.court)
-      // setBookedTimes(res.data.booked_times)
       setSlots(res.data.slots)
       setBookWarning(res.data.paying_warning)
-      setNumbers(res.data.numbers)
-      setloading(false)
       setCourtSettings(res.data.court_settings)
     }
     catch {
@@ -421,9 +418,11 @@ const CourtsContext = ({ children }) => {
   }
 
 
+
   return (
     <CourtsContextProvider.Provider
       value={{
+
         err,
 
         booksSearch, setBooksSearch,

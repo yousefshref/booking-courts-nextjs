@@ -15,19 +15,21 @@ const StaffsContext = ({ children }) => {
   const path = usePathname()
 
   const [staffs, setStaffs] = useState([])
+  const [bookfrom, setbookfrom] = useState('')
+  const [bookto, setbookto] = useState('')
 
   const getStaffs = async () => {
-    try {
-      const res = await axios.get(`${server}staffs/`, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`
-        }
-      })
-      setStaffs(res.data)
-    }
-    catch {
+    const res = await axios.get(`${server}staffs/?date_from=${bookfrom}&date_to=${bookto}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`
+      }
+    })
+    return await res.data
+    // try {
+    // }
+    // catch {
 
-    }
+    // }
   }
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const StaffsContext = ({ children }) => {
   const createStaff = async (e, setOpen) => {
     e.preventDefault()
     const res = await axios.post(`${server}register/`, {
-      username: e.target.username.value,
+      username: e.target.username.value.replace(/\s+/g, '_'),
       email: e.target.email.value,
       phone: e.target.phone.value,
       is_superuser: false,
@@ -79,7 +81,6 @@ const StaffsContext = ({ children }) => {
       staff_for: userContext?.user?.id,
       password: e.target.password.value,
     })
-    console.log(res.data);
     if (res.data.token) {
       getStaffs()
       userContext?.getUser()
@@ -88,10 +89,25 @@ const StaffsContext = ({ children }) => {
       e.target.email.value = ''
       e.target.phone.value = ''
       e.target.password.value = ''
+      userContext?.setMessage('تم انشاء حساب للموظف')
+      userContext?.setMessageDisplay('yes')
     }
     else {
       setErr(res.data)
+      if (res.data.email == 'user with this email already exists.') {
+        userContext?.setMessage('هذا البريد الالكتروني موجود بالفعل')
+        userContext?.setMessageDisplay('yes')
+      } else {
+        if (res.data.username == 'A user with that username already exists.') {
+          userContext?.setMessage('هضا اسم المستخدم موجود بالفعل')
+          userContext?.setMessageDisplay('yes')
+        } else {
+          userContext?.setMessage('حدث خطأ ما')
+          userContext?.setMessageDisplay('yes')
+        }
+      }
     }
+    return await res.data
   }
 
 
@@ -100,12 +116,15 @@ const StaffsContext = ({ children }) => {
       value={{
         err,
 
+        bookfrom, setbookfrom,
+        bookto, setbookto,
         staffs,
         setStaffBookFrom,
         setStaffBookTo,
         staffDetails,
         getStaffDetails,
         createStaff,
+        getStaffs
       }}
     >
       {children}

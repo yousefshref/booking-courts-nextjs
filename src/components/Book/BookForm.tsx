@@ -1,6 +1,7 @@
 import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import React, { useContext, useState } from 'react'
 import Slot from '../Slot'
+import { getCurrentDate } from '@/utlits/Functions'
 
 const BookForm = ({ loading, setTimesOpen, name, setName, phone, setPhone }: any) => {
   const courtContext = useContext(CourtsContextProvider)
@@ -26,7 +27,11 @@ const BookForm = ({ loading, setTimesOpen, name, setName, phone, setPhone }: any
       </div>
       <div className='date flex flex-col gap-3 w-full'>
         <label>تاريخ الحجز</label>
-        <input required value={courtContext?.selectedDate} onChange={(e: any) => courtContext?.setSelectedDate(e.target.value)} type="date" />
+        <input required value={courtContext?.selectedDate} onChange={(e: any) => {
+          if (e.target.value >= getCurrentDate()) {
+            courtContext?.setSelectedDate(e.target.value)
+          }
+        }} type="date" />
       </div>
       <hr className='p-[0.5px] bg-indigo-300' />
       <div className='flex flex-wrap justify-around gap-4 p-2'>

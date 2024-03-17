@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Menu, MenuItem } from "@mui/material"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
+import { AuthContextProvider } from '@/contexts/AuthContext';
 
 const Container = ({ children }: any) => {
+
+  const userContext = useContext(AuthContextProvider)
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,6 +29,9 @@ const Container = ({ children }: any) => {
           <Link href={'/'}>الرئيسية</Link>
           <Link href={'/courts'}>الملاعب</Link>
           <Link href={'/profile'}>الصفحة الشخصية</Link>
+          <p onClick={() => {
+            userContext?.logoutFunction()
+          }} className='font_light cursor-pointer text-red-600'>تسجيل الخروج</p>
         </div>
         {/* menu */}
         <div className="sm:hidden block">
@@ -47,9 +54,26 @@ const Container = ({ children }: any) => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
+            <MenuItem>
+              <Link href={'/'}>
+                <p className='font_light'>الرئيسية</p>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link href={'/courts'}>
+                <p className='font_light'>الملاعب</p>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link href={'/profile'}>
+                <p className='font_light'>الصفحة الشخصية</p>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <p onClick={() => {
+                userContext?.logoutFunction()
+              }} className='font_light cursor-pointer'>تسجيل الخروج</p>
+            </MenuItem>
           </Menu>
         </div>
       </header>

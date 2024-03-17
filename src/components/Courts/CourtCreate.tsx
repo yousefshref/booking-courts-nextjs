@@ -31,7 +31,7 @@ const CourtCreate = () => {
   const [location, setLocation] = useState<any>()
 
 
-  const [offerPrice, setOfferPrice] = useState<any>()
+  const [offerPrice, setOfferPrice] = useState<any>(0)
   const [offerFrom, setOfferFrom] = useState<any>()
   const [offerTo, setOfferTo] = useState<any>()
 

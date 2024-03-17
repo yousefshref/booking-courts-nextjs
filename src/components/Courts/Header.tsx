@@ -6,7 +6,10 @@ const Header = () => {
       <div id='courstHeader' className="w-full courtsHeaderAnimation transition-all duration-300 h-full p-5 flex flex-col justify-center">
         <h1>هل تبحث عن مكان معين ؟</h1>
         <div className='flex mt-5'>
-          <button className='font_light searchBtn md:min-w-0 min-w-full'>ابحث الأن</button>
+          <button onClick={() => {
+            const courtContiner = document.getElementById('courtContiner')
+            courtContiner?.scrollIntoView({ behavior: "smooth" })
+          }} className='font_light searchBtn md:min-w-0 min-w-full'>ابحث الأن</button>
         </div>
       </div>
     </div>
