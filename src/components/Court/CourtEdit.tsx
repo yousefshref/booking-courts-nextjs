@@ -12,12 +12,14 @@ import { MdTitle } from 'react-icons/md'
 import { GrCurrency } from "react-icons/gr";
 import { CiCircleCheck } from 'react-icons/ci'
 import { times } from '@/utlits/Variabels'
+import { AuthContextProvider } from '@/contexts/AuthContext'
 
 const CourtEdit = ({ court }: any) => {
 
   const courtContex = useContext(CourtsContextProvider)
   const stateContex = useContext(StateContextProvider)
   const bookContext = useContext(BooksContextProvider)
+  const authContext = useContext(AuthContextProvider)
 
 
   const [images, setImages] = useState<any>([])
@@ -348,7 +350,14 @@ const CourtEdit = ({ court }: any) => {
                   <div className='flex gap-3'>
                     <div className='ffg-1'>
                       <label>من</label>
-                      <select onChange={(e: any) => setOpen(e.target.value)} value={open} required>
+                      <select onChange={(e: any) => {
+                        if (e.target.value > close) {
+                          authContext?.setMessage('أختر وقت الفتح اقل من الغلق')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setOpen(e.target.value)
+                        }
+                      }} value={open} required>
                         <option value={''}>{'أختر وقت الفتح'}</option>
                         {
                           times?.map((time: any) => (
@@ -359,7 +368,14 @@ const CourtEdit = ({ court }: any) => {
                     </div>
                     <div className='ffg-1'>
                       <label>حتي</label>
-                      <select onChange={(e: any) => setClose(e.target.value)} value={close} required>
+                      <select onChange={(e: any) => {
+                        if (e.target.value < open) {
+                          authContext?.setMessage('أختر وقت الغلق اكبر من الفتح')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setClose(e.target.value)
+                        }
+                      }} value={close} required>
                         <option value={''}>{'أختر وقت الغلق'}</option>
                         {
                           times?.map((time: any) => (

@@ -1,3 +1,4 @@
+import { AuthContextProvider } from '@/contexts/AuthContext'
 import { BooksContextProvider } from '@/contexts/BooksContext'
 import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import { StateContextProvider } from '@/contexts/StateContext'
@@ -16,7 +17,7 @@ const CourtCreate = () => {
   const courtContex = useContext(CourtsContextProvider)
   const stateContex = useContext(StateContextProvider)
   const bookContext = useContext(BooksContextProvider)
-
+  const authContext = useContext(AuthContextProvider)
 
   const [images, setImages] = useState<any>([])
   const [videos, setVideos] = useState<any>([])
@@ -267,7 +268,7 @@ const CourtCreate = () => {
 
                 <div className='state ffg-1'>
                   <label>أختر المكان</label>
-                  <select onChange={(e) => setState(e.target.value)} value={state}>
+                  <select required onChange={(e) => setState(e.target.value)} value={state}>
                     <option value={''}>{'أختر المكان'}</option>
                     {
                       stateContex?.states?.map((s: any) => (
@@ -282,7 +283,14 @@ const CourtCreate = () => {
                   <div className='flex gap-3'>
                     <div className='ffg-1'>
                       <label>من</label>
-                      <select required onChange={(e: any) => setOpen(e.target.value)} value={open}>
+                      <select required onChange={(e: any) => {
+                        if (e.target.value > close) {
+                          authContext?.setMessage('أختر وقت الفتح اقل من الغلق')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setOpen(e.target.value)
+                        }
+                      }} value={open}>
                         <option value={''}>{'أختر وقت الفتح'}</option>
                         {
                           times?.map((time: any) => (
@@ -293,7 +301,14 @@ const CourtCreate = () => {
                     </div>
                     <div className='ffg-1'>
                       <label>حتي</label>
-                      <select onChange={(e: any) => setClose(e.target.value)} value={close} required>
+                      <select onChange={(e: any) => {
+                        if (e.target.value < open) {
+                          authContext?.setMessage('أختر وقت الغلق اكبر من الفتح')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setClose(e.target.value)
+                        }
+                      }} value={close} required>
                         <option value={''}>{'أختر وقت الغلق'}</option>
                         {
                           times?.map((time: any) => (
