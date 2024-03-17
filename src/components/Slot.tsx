@@ -64,6 +64,7 @@ const Slot = ({ slot }: any) => {
 
   const [bookedOpen, setBookedOpen] = useState<any>(null)
 
+
   return (
     hide ? null :
       <div
@@ -75,7 +76,7 @@ const Slot = ({ slot }: any) => {
         ${closed && "bg-yellow-400 hover:bg-yellow-200"}
       `}
         onClick={() => {
-          if (booked) {
+          if (booked && !bookedOpen) {
             setBookedOpen(slot)
           }
           if (closed) {
@@ -92,7 +93,7 @@ const Slot = ({ slot }: any) => {
         {/* if booked create notification */}
         {
           bookedOpen == slot ?
-            <div className='fixed flex flex-col gap-5 w-screen h-screen top-0 right-0'>
+            <div className='fixed flex z-50 flex-col gap-5 w-screen h-screen top-0 right-0'>
               <div className='from-neutral-100 to-indigo-100 w-screen h-screen top-0 left-0 via-indigo-50 bg-gradient-to-br opacity-50 -z-20 right-0'></div>
               <div className='flex flex-col justify-center w-full h-screen fixed top-0 right-0 p-5'>
                 <div className='bg-white text-start p-5 mx-auto w-full max-w-2xl z-50 top-0 ring-0'>
@@ -100,7 +101,9 @@ const Slot = ({ slot }: any) => {
                   <hr className='my-2 p-[0.5px] bg-indigo-600' />
                   <div className='btns flex gap-3 justify-between'>
                     <button onClick={(e) => bookContext?.createNotification(e, bookedOpen, setBookedOpen)} type='button' className='successBtn'>نعم</button>
-                    <button onClick={() => setBookedOpen(null)} type='button' className='errorBtn'>لا</button>
+                    <button onClick={() => {
+                      setBookedOpen(false)
+                    }} type='button' className='errorBtn'>لا</button>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import { BooksContextProvider } from '@/contexts/BooksContext'
 import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import { StateContextProvider } from '@/contexts/StateContext'
+import { times } from '@/utlits/Variabels'
 import { IconButton, Tooltip } from '@mui/material'
 import Image from 'next/image'
 import React, { useContext, useState } from 'react'
@@ -281,11 +282,25 @@ const CourtCreate = () => {
                   <div className='flex gap-3'>
                     <div className='ffg-1'>
                       <label>من</label>
-                      <input onChange={(e: any) => setOpen(e.target.value)} value={open} required type="time" />
+                      <select required onChange={(e: any) => setOpen(e.target.value)} value={open}>
+                        <option value={''}>{'أختر وقت الفتح'}</option>
+                        {
+                          times?.map((time: any) => (
+                            <option value={time?.value}>{time?.name}</option>
+                          ))
+                        }
+                      </select>
                     </div>
                     <div className='ffg-1'>
                       <label>حتي</label>
-                      <input onChange={(e: any) => setClose(e.target.value)} value={close} required type="time" />
+                      <select onChange={(e: any) => setClose(e.target.value)} value={close} required>
+                        <option value={''}>{'أختر وقت الغلق'}</option>
+                        {
+                          times?.map((time: any) => (
+                            <option value={time?.value}>{time?.name}</option>
+                          ))
+                        }
+                      </select>
                     </div>
                   </div>
                 </div>

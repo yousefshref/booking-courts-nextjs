@@ -11,6 +11,7 @@ import { StateContextProvider } from '@/contexts/StateContext'
 import { MdTitle } from 'react-icons/md'
 import { GrCurrency } from "react-icons/gr";
 import { CiCircleCheck } from 'react-icons/ci'
+import { times } from '@/utlits/Variabels'
 
 const CourtEdit = ({ court }: any) => {
 
@@ -347,11 +348,25 @@ const CourtEdit = ({ court }: any) => {
                   <div className='flex gap-3'>
                     <div className='ffg-1'>
                       <label>من</label>
-                      <input onChange={(e: any) => setOpen(e.target.value)} value={open} required type="time" />
+                      <select onChange={(e: any) => setOpen(e.target.value)} value={open} required>
+                        <option value={''}>{'أختر وقت الفتح'}</option>
+                        {
+                          times?.map((time: any) => (
+                            <option value={time?.value}>{time?.name}</option>
+                          ))
+                        }
+                      </select>
                     </div>
                     <div className='ffg-1'>
                       <label>حتي</label>
-                      <input onChange={(e: any) => setClose(e.target.value)} value={close} required type="time" />
+                      <select onChange={(e: any) => setClose(e.target.value)} value={close} required>
+                        <option value={''}>{'أختر وقت الغلق'}</option>
+                        {
+                          times?.map((time: any) => (
+                            <option value={time?.value}>{time?.name}</option>
+                          ))
+                        }
+                      </select>
                     </div>
                   </div>
                 </div>

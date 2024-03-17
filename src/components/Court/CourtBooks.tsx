@@ -8,7 +8,6 @@ import { BooksContextProvider } from '@/contexts/BooksContext'
 
 const CourtBooks = ({ open, setOpen }: any) => {
   const courtContext = useContext(CourtsContextProvider)
-  const bookContext = useContext(BooksContextProvider)
   useEffect(() => {
     if (open) {
       courtContext?.getCourtBooks(open)

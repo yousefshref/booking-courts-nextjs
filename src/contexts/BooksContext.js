@@ -77,7 +77,6 @@ const BooksContext = ({ children }) => {
 
 
   const createBook = async (e, infos) => {
-    setloading(true)
     e.preventDefault()
 
     const res = await axios.post(`${server}books/create/`, {
@@ -101,9 +100,6 @@ const BooksContext = ({ children }) => {
     }
     else {
       setErr(res.data)
-    }
-    if (res.data) {
-      setloading(false)
     }
   }
 
