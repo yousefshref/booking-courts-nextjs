@@ -160,9 +160,9 @@ const Book = ({ book, court, getStaffs, getBooks }: any) => {
                 bg-gradient-to-tr
                 w-full max-w-2xl mx-auto h-full 
                 overflow-scroll
-                relative flex flex-col justify-center
+                relative flex flex-col
                 gap-2 transition-all duration-300
-                ${book?.id == editOpen ? "max-h-[calc(100vh-150px)] p-3 z-50 md:max-h-[calc(100vh-300px)]" : "max-h-[0px] p-0 -z-50 md:max-h-[0px]"}
+                ${book?.id == editOpen ? "max-h-[100vh] p-3 z-50 md:max-h-[calc(100vh-300px)]" : "max-h-[0px] p-0 -z-50 md:max-h-[0px]"}
               `}
         >
           {/* buttons */}
