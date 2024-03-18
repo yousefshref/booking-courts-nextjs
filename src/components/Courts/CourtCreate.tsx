@@ -399,24 +399,46 @@ const CourtCreate = () => {
                   <div className='ffg-1'>
                     <label className='flex gap-2 justify-between'>
                       <p>من</p>
-                      <span onClick={() => {
-                        setOfferFrom('')
-                      }} className='text-red-600 cursor-pointer'>
-                        <CgClose />
-                      </span>
                     </label>
-                    <input onChange={(e: any) => setOfferFrom(e.target.value)} value={offerFrom} type="time" />
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value > offerTo) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setOfferFrom(e.target.value)
+                      }
+                    }} value={offerFrom}>
+                      <option value={''}>{'أختر وقت البدء'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
+
                   </div>
                   <div className='ffg-1'>
                     <label className='flex gap-2 justify-between'>
                       <p>حتي</p>
-                      <span onClick={() => {
-                        setOfferTo('')
-                      }} className='text-red-600 cursor-pointer'>
-                        <CgClose />
-                      </span>
                     </label>
-                    <input onChange={(e: any) => setOfferTo(e.target.value)} value={offerTo} type="time" />
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value < offerFrom) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setOfferTo(e.target.value)
+                      }
+                    }} value={offerTo}>
+                      <option value={''}>{'أختر وقت الانتهاء'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
+
                   </div>
                 </div>
               </div>
@@ -444,24 +466,45 @@ const CourtCreate = () => {
                   <div className='ffg-1'>
                     <label className='flex gap-2 justify-between'>
                       <p>من</p>
-                      <span onClick={() => {
-                        setEventFrom('')
-                      }} className='text-red-600 cursor-pointer'>
-                        <CgClose />
-                      </span>
                     </label>
-                    <input onChange={(e: any) => setEventFrom(e.target.value)} value={eventFrom} type="time" />
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value > eventTo) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setEventFrom(e.target.value)
+                      }
+                    }} value={eventFrom}>
+                      <option value={''}>{'أختر وقت البدء'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
+
                   </div>
                   <div className='ffg-1'>
                     <label className='flex gap-2 justify-between'>
                       <p>حتي</p>
-                      <span onClick={() => {
-                        setEventTo('')
-                      }} className='text-red-600 cursor-pointer'>
-                        <CgClose />
-                      </span>
                     </label>
-                    <input onChange={(e: any) => setEventTo(e.target.value)} value={eventTo} type="time" />
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value < eventFrom) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setEventTo(e.target.value)
+                      }
+                    }} value={eventTo}>
+                      <option value={''}>{'أختر وقت الانتهاء'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
                   </div>
                 </div>
               </div>
@@ -491,12 +534,46 @@ const CourtCreate = () => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
-                    <input onChange={(e: any) => setClosedFrom(e.target.value)} value={closedFrom} type="time" />
+                    <label className='flex gap-2 justify-between'>
+                      <p>حتي</p>
+                    </label>
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value > closedTo) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setClosedFrom(e.target.value)
+                      }
+                    }} value={closedFrom}>
+                      <option value={''}>{'أختر وقت بدأ'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
-                    <input onChange={(e: any) => setClosedTo(e.target.value)} value={closedTo} type="time" />
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                    </label>
+
+                    <select onChange={(e: any) => {
+                      if (e.target.value < closedFrom) {
+                        authContext?.setMessage('أختر وقت الانتهاء اكبر من البدء')
+                        authContext?.setMessageDisplay('yes')
+                      } else {
+                        setClosedTo(e.target.value)
+                      }
+                    }} value={closedTo}>
+                      <option value={''}>{'أختر وقت الانتهاء'}</option>
+                      {
+                        times?.map((time: any) => (
+                          <option value={time?.value}>{time?.name}</option>
+                        ))
+                      }
+                    </select>
                   </div>
                 </div>
               </div>

@@ -48,17 +48,14 @@ const TimesCustomization = ({ timesOpen, setTimesOpen, name, phone }: any) => {
 
 
             {/* conditions and totalPrices */}
-            <div className='flex flex-col gap-2 p-4 w-full from-indigo-100 to-blue-100 bg-gradient-to-bl mt-5 shadow-lg'>
-              <p>اجمالي السعر: {totalPrices} EGP</p>
-              {
-                courtSettings?.paying_warning ?
-                  <div className='flex flex-col gap-2 '>
-                    <hr className='py-[0.5px] bg-indigo-500' />
-                    <small className='text-red-700 font_light'>{courtSettings?.paying_warning}</small>
-                  </div>
-                  : null
-              }
-            </div>
+            {
+              courtSettings?.paying_warning &&
+              <div className='flex flex-col gap-2 p-4 w-full from-indigo-100 to-blue-100 bg-gradient-to-bl mt-5 shadow-lg'>
+                <div className='flex flex-col gap-2 '>
+                  <small className='text-red-700 font_light'>{courtSettings?.paying_warning}</small>
+                </div>
+              </div>
+            }
 
 
 
