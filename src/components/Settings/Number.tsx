@@ -32,7 +32,7 @@ const Number = ({ numbers, settings, getNumbers }: any) => {
               transition-all animated-border p-2 rounded-full
               `}
                 key={number?.id}>
-                <label className='my-auto'>
+                <label className='my-auto flex flex-wrap gap-3 justify-between'>
                   <p className='my-auto'>{number?.number}</p>
                   <p className='my-auto'>{number?.user_details?.username}</p>
                 </label>
