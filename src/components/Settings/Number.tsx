@@ -32,7 +32,10 @@ const Number = ({ numbers, settings, getNumbers }: any) => {
               transition-all animated-border p-2 rounded-full
               `}
                 key={number?.id}>
-                <p className='my-auto'>{number?.number}</p>
+                <label className='my-auto'>
+                  <p className='my-auto'>{number?.number}</p>
+                  <p className='my-auto'>{number?.user_details?.username}</p>
+                </label>
                 <span onClick={(e) => {
                   e.preventDefault()
                   settingsContext?.deleteNumber(number?.id).then((e: any) => e.success ? getNumbers() : console.log('no'))
