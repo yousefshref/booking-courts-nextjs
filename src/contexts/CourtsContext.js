@@ -162,7 +162,6 @@ const CourtsContext = ({ children }) => {
     })
     setCourts(res.data.courts)
     setLatestCourts(res.data.lates_courts)
-    setloading(false)
     if (res.data) {
     }
   }

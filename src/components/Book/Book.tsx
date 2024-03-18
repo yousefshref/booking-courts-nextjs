@@ -197,81 +197,85 @@ const Book = ({ book, court, getStaffs, getBooks }: any) => {
           <hr className="my-3 p-[0.5px] bg-indigo-500" />
           <div className="flex flex-col gap-4">
             {/* over time */}
-            <Accordion>
-              <AccordionSummary expandIcon={<BsArrowDown />}>
-                ساعات اضافية
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="flex flex-col gap-3">
-                  <div className="flex gap-2">
-                    <label className="my-auto">ساعة اضافية</label>
-                    <Tooltip
-                      title={
-                        <p className="font_light">
-                          تأكد من عدم وجود ساعات محجوزة في نفس الوقت الذي ستختارة
-                        </p>
-                      }
-                    >
-                      <span className="text-blue-500 my-auto">
-                        <ImInfo />
-                      </span>
-                    </Tooltip>
-                  </div>
-                  {
-                    book?.book_time?.book_over_time[0]?.id ? (
-                      <div className="flex flex-col gap-2">
-                        <div className="delete w-[200px]">
-                          <Button onClick={(e) => {
-                            e.preventDefault()
-                            bookContext?.deleteOverTime(book?.book_time?.book_over_time[0]?.id)
-                            courtContext?.getCourtBooks(book.book_time.court)
-                          }} color="error" endIcon={<BiTrash />}></Button>
-                        </div>
-                        <div className="overTime w-full flex flex-col gap-2">
-                          <div className="times w-full flex gap-2">
-                            <div className="from w-full flex flex-col">
-                              <p>من</p>
-                              <p>{tConvert(book?.book_time?.book_over_time[0].book_from?.slice(0, 5))}</p>
-                            </div>
-                            <div className="to w-full flex flex-col">
-                              <p>حتي</p>
-                              <p>{tConvert(book?.book_time?.book_over_time[0].book_to?.slice(0, 5))}</p>
-                            </div>
-                          </div>
-                          <div className="notePrice flex-col flex gap-2">
-                            <p>{book?.book_time?.book_over_time[0].note}</p>
-                            <p>{book?.book_time?.book_over_time[0].price} EGP</p>
-                          </div>
-                        </div>
+            {
+              userContext?.user?.is_staff || userContext?.user?.is_superuser ?
+                <Accordion>
+                  <AccordionSummary expandIcon={<BsArrowDown />}>
+                    ساعات اضافية
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex gap-2">
+                        <label className="my-auto">ساعة اضافية</label>
+                        <Tooltip
+                          title={
+                            <p className="font_light">
+                              تأكد من عدم وجود ساعات محجوزة في نفس الوقت الذي ستختارة
+                            </p>
+                          }
+                        >
+                          <span className="text-blue-500 my-auto">
+                            <ImInfo />
+                          </span>
+                        </Tooltip>
                       </div>
-                    )
-                      : (
-                        <div className="overTime w-full flex flex-col gap-2">
-                          <div className="times w-full flex gap-2">
-                            <div className="from w-full flex flex-col">
-                              <p>من</p>
-                              <input defaultValue={overTime.book_from} onChange={(e: any) => {
-                                overTime.book_from = e?.target?.value
-                              }} type="time" />
+                      {
+                        book?.book_time?.book_over_time[0]?.id ? (
+                          <div className="flex flex-col gap-2">
+                            <div className="delete w-[200px]">
+                              <Button onClick={(e) => {
+                                e.preventDefault()
+                                bookContext?.deleteOverTime(book?.book_time?.book_over_time[0]?.id)
+                                courtContext?.getCourtBooks(book.book_time.court)
+                              }} color="error" endIcon={<BiTrash />}></Button>
                             </div>
-                            <div className="to w-full flex flex-col">
-                              <p>حتي</p>
-                              <input defaultValue={overTime.book_to} onChange={(e: any) => {
-                                overTime.book_to = e?.target?.value
-                              }} type="time" />
+                            <div className="overTime w-full flex flex-col gap-2">
+                              <div className="times w-full flex gap-2">
+                                <div className="from w-full flex flex-col">
+                                  <p>من</p>
+                                  <p>{tConvert(book?.book_time?.book_over_time[0].book_from?.slice(0, 5))}</p>
+                                </div>
+                                <div className="to w-full flex flex-col">
+                                  <p>حتي</p>
+                                  <p>{tConvert(book?.book_time?.book_over_time[0].book_to?.slice(0, 5))}</p>
+                                </div>
+                              </div>
+                              <div className="notePrice flex-col flex gap-2">
+                                <p>{book?.book_time?.book_over_time[0].note}</p>
+                                <p>{book?.book_time?.book_over_time[0].price} EGP</p>
+                              </div>
                             </div>
                           </div>
-                          <div className="notePrice flex-col flex gap-2">
-                            <input defaultValue={overTime.note} onChange={(e) => overTime.note = e.target.value} type="text" placeholder="ملاحظات" />
-                            <input defaultValue={overTime.price} onChange={(e) => overTime.price = e.target.value} type="number" placeholder="السعر" />
-                          </div>
-                        </div>
-                      )
-                  }
+                        )
+                          : (
+                            <div className="overTime w-full flex flex-col gap-2">
+                              <div className="times w-full flex gap-2">
+                                <div className="from w-full flex flex-col">
+                                  <p>من</p>
+                                  <input defaultValue={overTime.book_from} onChange={(e: any) => {
+                                    overTime.book_from = e?.target?.value
+                                  }} type="time" />
+                                </div>
+                                <div className="to w-full flex flex-col">
+                                  <p>حتي</p>
+                                  <input defaultValue={overTime.book_to} onChange={(e: any) => {
+                                    overTime.book_to = e?.target?.value
+                                  }} type="time" />
+                                </div>
+                              </div>
+                              <div className="notePrice flex-col flex gap-2">
+                                <input defaultValue={overTime.note} onChange={(e) => overTime.note = e.target.value} type="text" placeholder="ملاحظات" />
+                                <input defaultValue={overTime.price} onChange={(e) => overTime.price = e.target.value} type="number" placeholder="السعر" />
+                              </div>
+                            </div>
+                          )
+                      }
 
-                </div>
-              </AccordionDetails>
-            </Accordion>
+                    </div>
+                  </AccordionDetails>
+                </Accordion>
+                : null
+            }
             {/* boot to date */}
             <Accordion>
               <AccordionSummary expandIcon={<BsArrowDown />}>
