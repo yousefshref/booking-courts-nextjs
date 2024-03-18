@@ -478,7 +478,7 @@ const CourtEdit = ({ court }: any) => {
                     <label className='flex gap-2 justify-between'>
                       <p>حتي</p>
                       <span onClick={() => {
-                        setEventTo('')
+                        setOfferTo('')
                       }} className='text-red-600 cursor-pointer'>
                         <CgClose />
                       </span>
