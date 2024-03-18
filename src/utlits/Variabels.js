@@ -7,10 +7,6 @@ export const paiedWith = [
 
 export const times = [
   {
-    name: "12:00 AM",
-    value: "00:00:00",
-  },
-  {
     name: "01:00 AM",
     value: "01:00:00",
   },
@@ -101,5 +97,9 @@ export const times = [
   {
     name: "11:00 PM",
     value: "23:00:00",
+  },
+  {
+    name: "12:00 AM",
+    value: "00:00:00",
   }
 ];
