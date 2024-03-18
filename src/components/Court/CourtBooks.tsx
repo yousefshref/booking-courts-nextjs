@@ -11,7 +11,7 @@ const CourtBooks = ({ open, setOpen }: any) => {
     if (open) {
       courtContext?.getCourtBooks(open)
     }
-  }, [open, courtContext?.booksSearch, courtContext?.booksSearch, courtContext?.booksBookDate, courtContext?.booksIsCancelled, courtContext?.booksIsPaid, courtContext?.booksPaid])
+  }, [open, courtContext?.booksSearch, courtContext?.booksBookDate, courtContext?.booksIsCancelled, courtContext?.booksIsPaid, courtContext?.booksPaid])
 
   const books = courtContext?.courtBooks
 
