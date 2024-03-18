@@ -140,6 +140,12 @@ const Book = ({ book, court, getStaffs, getBooks }: any) => {
         <div className="total">
           <p><span className="text-2xl">{book?.total_price}</span> EGP</p>
         </div>
+        {
+          book?.is_cancelled &&
+          <div className="total">
+            <p>تم اسرتجاع الاموال</p>
+          </div>
+        }
         <div>
           <small>{book?.book_time?.book_date}</small>
         </div>
