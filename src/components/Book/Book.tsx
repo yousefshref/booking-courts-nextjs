@@ -20,7 +20,7 @@ import { BooksContextProvider } from "@/contexts/BooksContext";
 import { IoMdRepeat } from "react-icons/io";
 import { CourtsContextProvider } from "@/contexts/CourtsContext";
 
-const Book = ({ book, court, getStaffs, getBooks }: any) => {
+const Book = ({ book, court, getStaffs, getBooks, books }: any) => {
   // open edit
   const [editOpen, setEditOpen] = useState(false);
 
@@ -69,10 +69,36 @@ const Book = ({ book, court, getStaffs, getBooks }: any) => {
   const can_delete = bookContext?.can_delete
 
 
+  // same
+  const same = books.filter((b: any) => b?.book == book.book)
+
+
+  const colors = [
+    'bg-red-300',
+    'bg-yellow-300',
+    'bg-green-300',
+    'bg-indigo-300',
+    'bg-lime-300',
+    'bg-blue-300',
+  ]
+
+  const getColorForBook = (bookIdentifier: any) => {
+    console.log(bookIdentifier);
+
+    let hash = 0;
+    for (let i = 0; i < String(bookIdentifier).length; i++) {
+      hash = (hash << 5) - hash + String(bookIdentifier).charCodeAt(i);
+    }
+    const index = Math.abs(hash) % colors.length;
+    return colors[index];
+  };
+
+
   return (
     <div
       className={`bookContainer ${book?.is_cancelled ? 'border border-red-500' : ''} w-full max-w-xs flex flex-col gap-2`}
     >
+      <div className={`${same.length > 1 ? `${getColorForBook(book.book_time?.id + book.book_time?.name + book.book_time?.phone)} p-2 w-full max-w-[200px] mx-auto mt-1 rounded-md` : ""}`}></div>
       <div onClick={() => setEditOpen(book?.id)} className="book from-indigo-50 to-blue-50 bg-gradient-to-tr shadow-md transition-all hover:shadow-lg p-3 w-full h-fit cursor-pointer flex flex-col gap-1">
         <div className="tims flex justify-between">
           <p>

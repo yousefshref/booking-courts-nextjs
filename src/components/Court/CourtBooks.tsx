@@ -4,7 +4,6 @@ import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import { paiedWith } from '@/utlits/Variabels'
 
 import Book from '../Book/Book'
-import { BooksContextProvider } from '@/contexts/BooksContext'
 
 const CourtBooks = ({ open, setOpen }: any) => {
   const courtContext = useContext(CourtsContextProvider)
@@ -15,7 +14,6 @@ const CourtBooks = ({ open, setOpen }: any) => {
   }, [open, courtContext?.booksSearch, courtContext?.booksSearch, courtContext?.booksBookDate, courtContext?.booksIsCancelled, courtContext?.booksIsPaid, courtContext?.booksPaid])
 
   const books = courtContext?.courtBooks
-
 
 
   return (
@@ -63,9 +61,11 @@ const CourtBooks = ({ open, setOpen }: any) => {
         {/* books */}
         <div className='flex flex-wrap gap-8 justify-around'>
           {
+            // filter all times with same book id
+            // if filter > 1 -> 
             books?.length > 0 ?
               books?.map((book: any) => (
-                <Book court={courtContext?.court} book={book} key={book?.id} />
+                <Book court={courtContext?.court} book={book} books={books} key={book?.id} />
               ))
               :
               <div className='p-4 rounded-md border border-red-800 text-red-800 bg-red-200 w-full max-w-full'>
