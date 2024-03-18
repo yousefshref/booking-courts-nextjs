@@ -95,26 +95,31 @@ const CourtEdit = ({ court }: any) => {
 
     // check images and videos
     if (images?.length == 0 && court?.court_image?.length == 0) {
-      alert('يجب ان تختار علي الاقل صورة واحدة')
+      authContext?.setMessage('يجب ان تختار علي الاقل صورة واحدة')
+      authContext?.setMessageDisplay('yes')
     } else {
       if ((offerPrice !== 0 && (!offerFrom || !offerTo)) || offerPrice == 0 && (offerFrom || offerTo)) {
-        alert('أكتب العرض بطريقة صحيحة او اتركة فارغ')
+        authContext?.setMessage('أكتب العرض بطريقة صحيحة او اتركة فارغ')
+        authContext?.setMessageDisplay('yes')
       }
       else {
         if ((eventPrice && (!eventFrom || !eventTo)) || !eventPrice && (eventFrom || eventTo)) {
-          alert('أكتب المناسبات بطريقة صحيحة او اتركة فارغ')
+          authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار الاوقات او العكس.')
+          authContext?.setMessageDisplay('yes')
         }
         else {
           // tools
           const emptyTool = tools?.find((e: any) => e?.title == '')
           if (emptyTool) {
-            alert('يجب ان تملأ خانة الادوات او تحذفها')
+            authContext?.setMessage('يجب ان تملأ خانة الادوات او تحذفها')
+            authContext?.setMessageDisplay('yes')
           }
           else {
             // features
             const emptyFeat = features?.find((e: any) => e?.feature === '' || e?.is_free === '' || e?.is_available === '')
             if (emptyFeat) {
-              alert('تأكد من صحى بيانات الميزات')
+              authContext?.setMessage('تأكد من صحة بيانات الميزات')
+              authContext?.setMessageDisplay('yes')
             }
             else {
               // CREATE FINALLY
