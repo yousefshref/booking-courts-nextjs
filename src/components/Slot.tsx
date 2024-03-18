@@ -61,7 +61,6 @@ const Slot = ({ slot }: any) => {
   const hide = getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(convertTo24HourFormat(slot.split('-')[1])?.split(':')[0])
 
 
-
   const [bookedOpen, setBookedOpen] = useState<any>(null)
 
 
