@@ -54,26 +54,31 @@ const CourtCreate = () => {
 
     // check images and videos
     if (images?.length == 0) {
-      alert('يجب ان تختار علي الاقل صورة واحدة')
+      authContext?.setMessage('يجب ان تختار علي الاقل صورة واحدة')
+      authContext?.setMessageDisplay('yes')
     } else {
       if ((offerPrice !== 0 && (!offerFrom || !offerTo)) || offerPrice == 0 && (offerFrom || offerTo)) {
-        alert('أكتب العرض بطريقة صحيحة او اتركة فارغ')
+        authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار اوقات العروض او العكس.')
+        authContext?.setMessageDisplay('yes')
       }
       else {
         if ((eventPrice && (!eventFrom || !eventTo)) || !eventPrice && (eventFrom || eventTo)) {
-          alert('أكتب المناسبات بطريقة صحيحة او اتركة فارغ')
+          authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار اوقات المناسبات او العكس.')
+          authContext?.setMessageDisplay('yes')
         }
         else {
           // tools
           const emptyTool = tools?.find((e: any) => e?.title == '')
           if (emptyTool) {
-            alert('يجب ان تملأ خانة الادوات او تحذفها')
+            authContext?.setMessage('يجب ان تملأ خانة الادوات او تحذفها')
+            authContext?.setMessageDisplay('yes')
           }
           else {
             // features
             const emptyFeat = features?.find((e: any) => e?.feature === '' || e?.is_free === '' || e?.is_available === '')
             if (emptyFeat) {
-              alert('تأكد من صحى بيانات الميزات')
+              authContext?.setMessage('تأكد من صحة بيانات الميزات')
+              authContext?.setMessageDisplay('yes')
             }
             else {
               // CREATE FINALLY
@@ -392,11 +397,25 @@ const CourtCreate = () => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setOfferFrom('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setOfferFrom(e.target.value)} value={offerFrom} type="time" />
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>حتي</p>
+                      <span onClick={() => {
+                        setOfferTo('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setOfferTo(e.target.value)} value={offerTo} type="time" />
                   </div>
                 </div>
@@ -423,11 +442,25 @@ const CourtCreate = () => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setEventFrom('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setEventFrom(e.target.value)} value={eventFrom} type="time" />
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>حتي</p>
+                      <span onClick={() => {
+                        setEventTo('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setEventTo(e.target.value)} value={eventTo} type="time" />
                   </div>
                 </div>
