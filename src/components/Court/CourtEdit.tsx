@@ -99,12 +99,12 @@ const CourtEdit = ({ court }: any) => {
       authContext?.setMessageDisplay('yes')
     } else {
       if ((offerPrice !== 0 && (!offerFrom || !offerTo)) || offerPrice == 0 && (offerFrom || offerTo)) {
-        authContext?.setMessage('أكتب العرض بطريقة صحيحة او اتركة فارغ')
+        authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار اوقات العروض او العكس.')
         authContext?.setMessageDisplay('yes')
       }
       else {
         if ((eventPrice && (!eventFrom || !eventTo)) || !eventPrice && (eventFrom || eventTo)) {
-          authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار الاوقات او العكس.')
+          authContext?.setMessage('لا يمكن ترك السعر فارغ واختيار اوقات المناسبات او العكس.')
           authContext?.setMessageDisplay('yes')
         }
         else {
@@ -464,11 +464,25 @@ const CourtEdit = ({ court }: any) => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setOfferFrom('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setOfferFrom(e.target.value)} value={offerFrom} type="time" />
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>حتي</p>
+                      <span onClick={() => {
+                        setEventTo('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setOfferTo(e.target.value)} value={offerTo} type="time" />
                   </div>
                 </div>
@@ -495,11 +509,25 @@ const CourtEdit = ({ court }: any) => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setEventFrom('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setEventFrom(e.target.value)} value={eventFrom} type="time" />
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>حتي</p>
+                      <span onClick={() => {
+                        setEventTo('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setEventTo(e.target.value)} value={eventTo} type="time" />
                   </div>
                 </div>
@@ -530,11 +558,25 @@ const CourtEdit = ({ court }: any) => {
                 </div>
                 <div className='flex gap-3'>
                   <div className='ffg-1'>
-                    <label>من</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setClosedFrom('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setClosedFrom(e.target.value)} value={closedFrom} type="time" />
                   </div>
                   <div className='ffg-1'>
-                    <label>حتي</label>
+                    <label className='flex gap-2 justify-between'>
+                      <p>من</p>
+                      <span onClick={() => {
+                        setClosedTo('')
+                      }} className='text-red-600 cursor-pointer'>
+                        <CgClose />
+                      </span>
+                    </label>
                     <input onChange={(e: any) => setClosedTo(e.target.value)} value={closedTo} type="time" />
                   </div>
                 </div>
