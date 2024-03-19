@@ -58,7 +58,7 @@ const Slot = ({ slot }: any) => {
 
   // hide (if today == selectedDate && currentTime > bookFrom)
   const currentDate = new Date();
-  // const hide = getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(convertTo24HourFormat(slot.split('-')[1])?.split(':')[0])
+  const hide = getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(convertTo24HourFormat(slot.split('-')[1])?.split(':')[0])
 
 
 
