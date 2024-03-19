@@ -66,52 +66,52 @@ const Slot = ({ slot }: any) => {
 
 
   return (
-    // hide ? null :
-    <div
-      className={`
+    hide ? null :
+      <div
+        className={`
         p-2 text-center rounded-full transition-all cursor-pointer
         w-full md:max-w-[150px] text-sm md:text-base
         ${selected ? "bg-green-400 hover:bg-green-200" : "bg-indigo-300 hover:bg-indigo-200"}
         ${booked && "bg-red-400 hover:bg-red-200"}
         ${closed && "bg-yellow-400 hover:bg-yellow-200"}
       `}
-      onClick={() => {
-        if (booked && !bookedOpen) {
-          setBookedOpen(slot)
-        }
-        if (closed) {
-          alert('هذا الوقت مغلق');
-        }
-        if (!closed && !booked) {
-          addNewSelectedSlot(slot)
-        }
-      }}
-    >
-      {slot}
+        onClick={() => {
+          if (booked && !bookedOpen) {
+            setBookedOpen(slot)
+          }
+          if (closed) {
+            alert('هذا الوقت مغلق');
+          }
+          if (!closed && !booked) {
+            addNewSelectedSlot(slot)
+          }
+        }}
+      >
+        {slot}
 
 
-      {/* if booked create notification */}
-      {
-        bookedOpen == slot ?
-          <div className='fixed flex z-50 flex-col gap-5 w-screen h-screen top-0 right-0'>
-            <div className='from-neutral-100 to-indigo-100 w-screen h-screen top-0 left-0 via-indigo-50 bg-gradient-to-br opacity-50 -z-20 right-0'></div>
-            <div className='flex flex-col justify-center w-full h-screen fixed top-0 right-0 p-5'>
-              <div className='bg-white text-start p-5 mx-auto w-full max-w-2xl z-50 top-0 ring-0'>
-                <p>هل تريد تنبيهك في حالة فراغ هذا الوقت ؟</p>
-                <hr className='my-2 p-[0.5px] bg-indigo-600' />
-                <div className='btns flex gap-3 justify-between'>
-                  <button onClick={(e) => bookContext?.createNotification(e, bookedOpen, setBookedOpen)} type='button' className='successBtn'>نعم</button>
-                  <button onClick={() => {
-                    setBookedOpen(false)
-                  }} type='button' className='errorBtn'>لا</button>
+        {/* if booked create notification */}
+        {
+          bookedOpen == slot ?
+            <div className='fixed flex z-50 flex-col gap-5 w-screen h-screen top-0 right-0'>
+              <div className='from-neutral-100 to-indigo-100 w-screen h-screen top-0 left-0 via-indigo-50 bg-gradient-to-br opacity-50 -z-20 right-0'></div>
+              <div className='flex flex-col justify-center w-full h-screen fixed top-0 right-0 p-5'>
+                <div className='bg-white text-start p-5 mx-auto w-full max-w-2xl z-50 top-0 ring-0'>
+                  <p>هل تريد تنبيهك في حالة فراغ هذا الوقت ؟</p>
+                  <hr className='my-2 p-[0.5px] bg-indigo-600' />
+                  <div className='btns flex gap-3 justify-between'>
+                    <button onClick={(e) => bookContext?.createNotification(e, bookedOpen, setBookedOpen)} type='button' className='successBtn'>نعم</button>
+                    <button onClick={() => {
+                      setBookedOpen(false)
+                    }} type='button' className='errorBtn'>لا</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          : null
-      }
+            : null
+        }
 
-    </div>
+      </div>
   )
 }
 
