@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BiExpand } from 'react-icons/bi';
 import { BsArrowDown, BsArrowLeft, BsArrowRight, BsArrowUp } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
-import { server } from '../../../server';
+import { server } from '../../utlits/Variabels';
 
 
 const CourtImage = ({ court }: any) => {
@@ -33,9 +33,10 @@ const CourtImage = ({ court }: any) => {
       <div className="img flex flex-col md:flex-row gap-2">
         <div className='relative'>
           {
-            activeImage?.image ?
+            activeImage?.image !== undefined ?
               <Image className="rounded-md md:h-[250px] md:w-[250px] w-full " loading="lazy" alt="alt" width={200} height={200} src={server + activeImage?.image} />
               : (
+                activeImage?.video !== undefined &&
                 <>
                   <video id="video" width="250" height="250" controls>
                     <source src={server + activeImage?.video} type="video/mp4" />

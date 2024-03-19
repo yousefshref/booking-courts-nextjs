@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { usePathname } from 'next/navigation'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { server } from '../../server'
+import { server } from '../utlits/Variabels'
 import { AuthContextProvider } from './AuthContext'
 
 const SettingsContext = ({ children }) => {

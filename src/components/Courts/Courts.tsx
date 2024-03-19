@@ -2,11 +2,8 @@ import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import { StateContextProvider } from '@/contexts/StateContext'
 import React, { useContext } from 'react'
 import CourtComponent from '../Court/CourtComponent'
-import Loading from '../Utlits/Loading'
-import LoadingComponent from '../Utlits/LoadingComponent'
 import { AuthContextProvider } from '@/contexts/AuthContext'
 import { IoCreate } from 'react-icons/io5'
-import Link from 'next/link'
 import CourtCreate from './CourtCreate'
 
 const Courts = () => {

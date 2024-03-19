@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
-import { server } from '../../server'
+import { server } from '../utlits/Variabels'
 import { usePathname } from 'next/navigation'
 
 const StateContext = ({ children }) => {

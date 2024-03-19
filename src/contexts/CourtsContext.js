@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { server } from '../../server'
+import { server } from '../utlits/Variabels'
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { tConvert } from '@/utlits/Functions'
 import { AuthContextProvider } from './AuthContext'

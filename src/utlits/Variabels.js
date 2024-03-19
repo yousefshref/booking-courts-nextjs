@@ -4,6 +4,8 @@ export const paiedWith = [
   // 'محفظة الكترونية',
 ]
 
+// export const server = 'http://127.0.0.1:8000/'
+export const server = 'https://yousefshreef1.pythonanywhere.com/'
 
 export const times = [
   {
@@ -103,3 +105,5 @@ export const times = [
     value: "00:00:00",
   }
 ];
+
+
