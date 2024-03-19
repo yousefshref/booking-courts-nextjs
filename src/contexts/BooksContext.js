@@ -21,18 +21,7 @@ const BooksContext = ({ children }) => {
   const courtContext = useContext(CourtsContextProvider)
   const userContext = useContext(AuthContextProvider)
 
-  function getCurrentDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Adding 1 because month is zero-indexed
-    const day = today.getDate().toString().padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
-  }
-
-  const [dateFrom, setDateFrom] = useState(getCurrentDate())
-  const [dateTo, setDateTo] = useState('')
-  const [books, setBooks] = useState([])
   const [times, setTimes] = useState([])
 
   const getBooks = async (bookfrom, bookto) => {
@@ -49,7 +38,7 @@ const BooksContext = ({ children }) => {
     if (localStorage.getItem('token') && (path.includes('books') || path.includes('profile'))) {
       getBooks()
     }
-  }, [dateFrom, dateTo])
+  }, [])
 
 
 
@@ -73,6 +62,18 @@ const BooksContext = ({ children }) => {
       getBook()
     }
   }, [params.book_id, path])
+
+
+
+
+  const getAllTimes = async (search, from, to, is_cancelled) => {
+    const res = await axios.get(`${server}courts/all_times/?search=${search ?? ''}&from=${from ?? ''}&to=${to ?? ''}&is_cancelled=${is_cancelled ?? ''}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`
+      }
+    })
+    return res.data
+  }
 
 
 
@@ -102,31 +103,6 @@ const BooksContext = ({ children }) => {
       setErr(res.data)
     }
   }
-
-
-
-
-  // const updateTime = async (e,
-  //   time_id, tools,
-  //   bookToDate, eventValue, withBallValue, paiedWithValue,
-  //   isPaiedValue, isCancelled, cancelledDay
-  // ) => {
-  //   e.preventDefault()
-  //   const data = {
-  //     book_to_date: bookToDate,
-  //     event: eventValue,
-  //     with_ball: withBallValue,
-  //     paied: paiedWithValue,
-  //     is_paied: isPaiedValue,
-  //     is_cancelled: isCancelled,
-  //     is_cancelled_day: cancelledDay,
-  //   }
-  //   const res = await axios.put(`${server}books/time/${time_id}/update/?tools=${tools}`, data, {
-  //     headers: {
-  //       Authorization: `Token ${localStorage.getItem('token')}`
-  //     }
-  //   })
-  // }
 
 
   const updateBook = async (e,
@@ -206,7 +182,6 @@ const BooksContext = ({ children }) => {
       }
       setDeleteOpenMessage('تم الغاء الحجز')
     }
-    courtContext?.setsubmitLoading(false)
   }
   useEffect(() => {
     if (deleteOpenMessage) {
@@ -278,7 +253,6 @@ const BooksContext = ({ children }) => {
 
 
 
-
   const createNotification = async (e, slot, setOpen) => {
     e.preventDefault()
 
@@ -307,12 +281,10 @@ const BooksContext = ({ children }) => {
 
         getBooks,
 
-        dateFrom,
-        dateTo,
-        setDateFrom,
-        setDateTo,
+
+        getAllTimes,
+
         times,
-        books,
         timeId,
         setTimeId,
         book,
@@ -323,7 +295,6 @@ const BooksContext = ({ children }) => {
         updateBook,
         deleteBook,
 
-        // updateTime,
         deleteOverTime,
         createOverTime,
 

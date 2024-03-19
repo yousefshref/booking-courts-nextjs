@@ -1,4 +1,3 @@
-import { BooksContextProvider } from '@/contexts/BooksContext'
 import { paiedWith } from '../../utlits/Variabels'
 import { tConvert } from '@/utlits/Functions'
 import { Accordion, AccordionDetails, AccordionSummary, Tooltip } from '@mui/material'
@@ -72,9 +71,11 @@ const Time = ({ time, index }: any) => {
   // total Price
   const totalPrice = price + ballPrice + eventPrice + toolsTotalPrice + offerPrice
 
-  const passTotalPrice = () => {
-    return totalPrice
-  }
+
+  const [paied_with, set_paied_with] = useState(exist.paied)
+  useEffect(() => {
+    set_paied_with(exist.paied)
+  }, [paied_with])
 
 
   return (
@@ -206,8 +207,18 @@ const Time = ({ time, index }: any) => {
                 </span>
                 <label className='my-auto'>طريقة الدفع</label>
               </div>
-              <select defaultValue={exist.paied} onChange={(e: any) => {
-                exist.paied = e.target.value
+              <select value={paied_with ?? ''} onChange={(e: any) => {
+                if (userContext?.user?.is_superuser || userContext?.user?.is_staff) {
+                  exist.paied = e.target.value
+                  set_paied_with(e.target.value)
+                } else {
+                  if (e.target.value == 'محفظة الكترونية') {
+                    userContext?.setMessage('الميزة ليست متاحة لك')
+                    userContext?.setMessageDisplay('yes')
+                    set_paied_with('عند الوصول')
+                    exist.paied = 'عند الوصول'
+                  }
+                }
               }}>
                 {
                   paiedWith?.map((p: any) => (

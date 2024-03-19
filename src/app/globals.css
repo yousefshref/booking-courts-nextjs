@@ -83,6 +83,9 @@ select {
 .btn-prim-rounded {
   @apply rounded-full bg-indigo-500 hover:bg-indigo-400 p-3 px-5 text-white;
 }
+.btn-sec-rounded {
+  @apply rounded-full bg-blue-500 hover:bg-blue-400 p-3 px-5 text-white;
+}
 
 .smooth-transparent-div::after {
   content: "";
@@ -144,6 +147,9 @@ input[type="number"] {
 
 .errorContainer {
   @apply p-3 rounded-md bg-red-200 border-red-500 text-red-500 border;
+}
+.warningContainer {
+  @apply p-3 rounded-md bg-yellow-200 border-yellow-500 text-yellow-500 border;
 }
 
 .animated-border {

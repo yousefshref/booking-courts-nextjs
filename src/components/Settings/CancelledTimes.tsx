@@ -12,7 +12,7 @@ const CancelledTimes = ({
     <div className='animateToTop flex flex-col gap-4'>
       <p>الحجوزات الملغية اليوم</p>
       <hr />
-      <div className='search flex gap-3'>
+      <div className='search flex gap-3 flex-wrap'>
         <div className='flex flex-col gap-1'>
           <p>تاريخ الحجز من</p>
           <input type="date"

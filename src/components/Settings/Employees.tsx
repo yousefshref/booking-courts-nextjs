@@ -32,8 +32,8 @@ const Employees = ({ staffs, getStaffs }: any) => {
       <div className='flex flex-col gap-3'>
         <div className='p-2 flex-wrap rounded-md flex gap-5 justify-between bg-white'>
           {
-            staffs?.slice(0, 2)?.map((staff: any) => (
-              <Staff setStaffOpen={setStaffOpen} staff={staff} key={staff?.id} />
+            staffs?.slice(0, 2)?.map((staff: any, i: any) => (
+              <Staff setStaffOpen={setStaffOpen} staff={staff} key={i} />
             ))
           }
         </div>
@@ -49,8 +49,8 @@ const Employees = ({ staffs, getStaffs }: any) => {
           more &&
           <div className='p-2 flex-wrap rounded-md flex gap-5 justify-between bg-white'>
             {
-              staffs?.slice(2)?.map((staff: any) => (
-                <Staff setStaffOpen={setStaffOpen} staff={staff} key={staff?.id} />
+              staffs?.slice(2)?.map((staff: any, i: any) => (
+                <Staff setStaffOpen={setStaffOpen} staff={staff} key={i} />
               ))
             }
           </div>

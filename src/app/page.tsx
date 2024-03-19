@@ -193,7 +193,7 @@ export default function Home() {
       </div>
 
       {/* video */}
-      <div id="div2" className={`
+      {/* <div id="div2" className={`
       animate-me video flex lg:flex-row flex-col justify-around p-8 bg-white gap-5
       transition-all duration-500
       ${visibleDiv.includes('div2') ? 'opacity-100 mt-1' : 'mt-20 opacity-0 '}
@@ -225,7 +225,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* open video */}
         <div className={
           `
         videoOpen bg-black bg-opacity-60 flex flex-col w-screen overflow-hidden justify-center fixed z-20 top-0 left-0 transition-all duration-700
@@ -240,7 +239,7 @@ export default function Home() {
           </div>
         </div>
 
-      </div>
+      </div> */}
 
       {/* latest courts */}
       <div id="div3" className={`

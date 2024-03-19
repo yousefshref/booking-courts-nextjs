@@ -20,7 +20,7 @@ import { BooksContextProvider } from "@/contexts/BooksContext";
 import { IoMdRepeat } from "react-icons/io";
 import { CourtsContextProvider } from "@/contexts/CourtsContext";
 
-const Book = ({ book, court, getStaffs, getBooks, books }: any) => {
+const Book = ({ book, court, getStaffs, getBooks }: any) => {
   // open edit
   const [editOpen, setEditOpen] = useState(false);
 
@@ -69,16 +69,11 @@ const Book = ({ book, court, getStaffs, getBooks, books }: any) => {
   const can_delete = bookContext?.can_delete
 
 
-  // same
-  const same = books.filter((b: any) => b?.book == book.book)
 
   return (
     <div
       className={`bookContainer ${book?.is_cancelled ? 'border border-red-500' : ''} w-full max-w-xs flex flex-col gap-2`}
     >
-      <div className={`p-2 w-full max-w-[200px] mx-auto mt-1 rounded-md`}>
-        <p>{same.length > 1 && same?.find((f: any) => f?.id == book?.id)?.book_time?.name}</p>
-      </div>
       <div onClick={() => setEditOpen(book?.id)} className="book from-indigo-50 to-blue-50 bg-gradient-to-tr shadow-md transition-all hover:shadow-lg p-3 w-full h-fit cursor-pointer flex flex-col gap-1">
         <div className="tims flex justify-between">
           <p>

@@ -30,7 +30,7 @@ const page = () => {
   const [cancelled, setCancelled] = useState<any>()
   const [cancelled_from, setcancelled_from] = useState<any>(getCurrentDate())
   const [cancelled_to, setcancelled_to] = useState<any>(getCurrentDate())
-  const [cancelled_search, setcancelled_search] = useState<any>(getCurrentDate())
+  const [cancelled_search, setcancelled_search] = useState<any>('')
 
   const [settings, setSettings] = useState<any>()
   const [settingsError, setSettingsError] = useState(false)
@@ -169,6 +169,30 @@ const page = () => {
               </div>
             </div>
 
+            {/* wallet settings */}
+            {
+              loadingSettings && (user?.is_superuser || user?.is_staff) ?
+                <div className={`flex flex-col gap-4 animateToTop p-5 bg-white`}>
+                  <div className='payingWaring flex flex-col gap-1 w-fit'>
+                    <LoadingComponent withText />
+                  </div>
+                </div>
+                :
+                settingsError ? <div className='errorContainer animateToTop'><p>لا يوجد لديك اعدادات... يرجي الاتصال بالدعم لو تتكر المشكلة باستمرار</p></div>
+                  :
+                  user?.x_pay_phone ?
+                    <div className='p-2 animateToTop gap-2 flex flex-col max-w-2xl w-full mx-auto from-indigo-100 to-blue-100 bg-gradient-to-tr shadow-md'>
+                      <p>بيانات تسجيل في xpay</p>
+                      <div className='flex flex-col'>
+                        <p>هاتف التسجيل: {user?.x_pay_phone}</p>
+                        <p>كلمة المرور: {user?.x_pay_password}</p>
+                      </div>
+                    </div>
+                    :
+                    <div className='errorContainer animateToTop'>
+                      <p>يرجي التواصل مع الدعم حتي تسطيع سحب ارباح فودافون كاش ويكون لك حساب</p>
+                    </div>
+            }
 
             {/* settings and numbers */}
             {
@@ -207,7 +231,7 @@ const page = () => {
 
             {/* employees */}
             {
-              loadingStaffs && (user?.is_superuser || user?.is_staff) ?
+              loadingStaffs && (user?.is_superuser) ?
                 <div className='payingWaring animateToTop flex flex-col gap-1 w-fit'>
                   <LoadingComponent withText />
                 </div>

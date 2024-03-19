@@ -1,11 +1,12 @@
 
 export const paiedWith = [
   'عند الوصول',
-  // 'محفظة الكترونية',
+  'محفظة الكترونية',
 ]
 
 // export const server = 'http://127.0.0.1:8000/'
-export const server = 'https://yousefshreef1.pythonanywhere.com/'
+// export const server = 'https://yousefshreef1.pythonanywhere.com/'
+export const server = 'https://sports.api.linkawyx.com/'
 
 export const times = [
   {

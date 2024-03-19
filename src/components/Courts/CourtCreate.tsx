@@ -298,8 +298,8 @@ const CourtCreate = () => {
                       }} value={open}>
                         <option value={''}>{'أختر وقت الفتح'}</option>
                         {
-                          times?.map((time: any) => (
-                            <option value={time?.value}>{time?.name}</option>
+                          times?.map((time: any, i: any) => (
+                            <option key={i} value={time?.value}>{time?.name}</option>
                           ))
                         }
                       </select>
@@ -316,8 +316,8 @@ const CourtCreate = () => {
                       }} value={close} required>
                         <option value={''}>{'أختر وقت الغلق'}</option>
                         {
-                          times?.map((time: any) => (
-                            <option value={time?.value}>{time?.name}</option>
+                          times?.map((time: any, i: any) => (
+                            <option key={i} value={time?.value}>{time?.name}</option>
                           ))
                         }
                       </select>
@@ -411,8 +411,8 @@ const CourtCreate = () => {
                     }} value={offerFrom}>
                       <option value={''}>{'أختر وقت البدء'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
@@ -433,8 +433,8 @@ const CourtCreate = () => {
                     }} value={offerTo}>
                       <option value={''}>{'أختر وقت الانتهاء'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
@@ -478,8 +478,8 @@ const CourtCreate = () => {
                     }} value={eventFrom}>
                       <option value={''}>{'أختر وقت البدء'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
@@ -500,8 +500,8 @@ const CourtCreate = () => {
                     }} value={eventTo}>
                       <option value={''}>{'أختر وقت الانتهاء'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
@@ -548,8 +548,8 @@ const CourtCreate = () => {
                     }} value={closedFrom}>
                       <option value={''}>{'أختر وقت بدأ'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
@@ -569,8 +569,8 @@ const CourtCreate = () => {
                     }} value={closedTo}>
                       <option value={''}>{'أختر وقت الانتهاء'}</option>
                       {
-                        times?.map((time: any) => (
-                          <option value={time?.value}>{time?.name}</option>
+                        times?.map((time: any, i: any) => (
+                          <option key={i} value={time?.value}>{time?.name}</option>
                         ))
                       }
                     </select>
