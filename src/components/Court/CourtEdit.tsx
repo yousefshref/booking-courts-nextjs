@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
 import { BiPlus, BiPlusCircle, BiTrash } from 'react-icons/bi'
 import { CgClose } from 'react-icons/cg'
-import { server } from '../../../server'
 import { IconButton, Tooltip } from '@mui/material'
 import { CourtsContextProvider } from '@/contexts/CourtsContext'
 import { BooksContextProvider } from '@/contexts/BooksContext'
@@ -11,7 +10,7 @@ import { StateContextProvider } from '@/contexts/StateContext'
 import { MdTitle } from 'react-icons/md'
 import { GrCurrency } from "react-icons/gr";
 import { CiCircleCheck } from 'react-icons/ci'
-import { times } from '@/utlits/Variabels'
+import { server, times } from '@/utlits/Variabels'
 import { AuthContextProvider } from '@/contexts/AuthContext'
 
 const CourtEdit = ({ court }: any) => {
