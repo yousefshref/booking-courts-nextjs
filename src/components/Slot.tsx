@@ -58,15 +58,15 @@ const Slot = ({ slot }: any) => {
 
   // hide (if today == selectedDate && currentTime > bookFrom)
   const currentDate = new Date();
-  const hide = getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(convertTo24HourFormat(slot.split('-')[1])?.split(':')[0])
+  const hide = Number(bookFrom) < Number(bookTo) && getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(bookFrom?.split(':')[0])
 
 
+  const hide_2 = Number(bookFrom) > Number(bookTo) && getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(bookTo?.split(':')[0])
 
   const [bookedOpen, setBookedOpen] = useState<any>(null)
 
-
   return (
-    hide ? null :
+    hide || hide_2 ? null :
       <div
         className={`
         p-2 text-center rounded-full transition-all cursor-pointer
