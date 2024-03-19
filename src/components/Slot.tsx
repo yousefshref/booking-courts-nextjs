@@ -58,10 +58,10 @@ const Slot = ({ slot }: any) => {
 
   // hide (if today == selectedDate && currentTime > bookFrom)
   const currentDate = new Date();
-  const hide = Number(bookFrom) < Number(bookTo) && getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(bookFrom?.split(':')[0])
+  const nowTime = currentDate.toLocaleTimeString()?.split(':')[0]
 
-
-  const hide_2 = Number(bookFrom) > Number(bookTo) && getCurrentDate() == selectedDate && Number(currentDate.toLocaleTimeString()?.split(':')[0]) >= Number(bookTo?.split(':')[0])
+  const hide = Number(bookFrom) < Number(bookTo) && getCurrentDate() == selectedDate && Number(nowTime) >= Number(bookFrom?.split(':')[0])
+  const hide_2 = Number(bookFrom) > Number(bookTo) && getCurrentDate() == selectedDate && Number(nowTime) <= Number(bookTo?.split(':')[0])
 
   const [bookedOpen, setBookedOpen] = useState<any>(null)
 
