@@ -7,6 +7,7 @@ const BookForm = ({ loading, setTimesOpen, name, setName, phone, setPhone }: any
   const courtContext = useContext(CourtsContextProvider)
   const slots = courtContext?.slotsArray
   const selected = courtContext?.selectedSlots
+  const court = courtContext?.court
 
   return (
     <form onSubmit={(e) => {
@@ -37,7 +38,7 @@ const BookForm = ({ loading, setTimesOpen, name, setName, phone, setPhone }: any
       <div className='flex flex-wrap justify-around gap-4 p-2'>
         {
           slots?.map((slot: any) => (
-            <Slot slot={slot} key={slot} />
+            <Slot court={court} slot={slot} key={slot} />
           ))
         }
       </div>

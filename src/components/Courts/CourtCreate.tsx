@@ -289,7 +289,12 @@ const CourtCreate = () => {
                     <div className='ffg-1'>
                       <label>من</label>
                       <select required onChange={(e: any) => {
-                        setOpen(e.target.value)
+                        if (e.target.value > close) {
+                          authContext?.setMessage('أختر وقت الانتهاء الاغلاق من الفتح')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setOpen(e.target.value)
+                        }
                       }} value={open}>
                         <option value={''}>{'أختر وقت الفتح'}</option>
                         {
@@ -302,7 +307,12 @@ const CourtCreate = () => {
                     <div className='ffg-1'>
                       <label>حتي</label>
                       <select onChange={(e: any) => {
-                        setClose(e.target.value)
+                        if (e.target.value < open) {
+                          authContext?.setMessage('أختر وقت الانتهاء الاغلاق من الفتح')
+                          authContext?.setMessageDisplay('yes')
+                        } else {
+                          setClose(e.target.value)
+                        }
                       }} value={close} required>
                         <option value={''}>{'أختر وقت الغلق'}</option>
                         {
