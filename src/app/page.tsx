@@ -45,7 +45,7 @@ export default function Home() {
       description: 'الأن ستصلك رسالة بنجاح عملية الحجز, ويمكنك الذهاب في الوقت المناسب لك.',
       btn_icon: <MdOutlineContactSupport />,
       btn_title: 'لديك مشكلة ما ؟',
-      href: `/`
+      href: `https://wa.me/201203316333`
     },
   ]
 
@@ -242,7 +242,7 @@ export default function Home() {
       </div> */}
 
       {/* latest courts */}
-      <div id="div3" className={`
+      {/* <div id="div3" className={`
       courts animate-me p-5 flex flex-col gap-2 from-neutral-200 to-neutral-100 bg-gradient-to-b via-neutral-200 transition-all duration-500
       ${visibleDiv.includes('div3') ? 'opacity-100 mt-1' : 'mt-20 opacity-0'}
       `}>
@@ -259,7 +259,7 @@ export default function Home() {
 
 
         </div>
-      </div>
+      </div> */}
 
       {/* footer */}
       <div id="div4" className={`footer p-5 flex gap- justify-between w-full max-w-6xl mx-auto transition-all duration-500 animate-me ${visibleDiv.includes('div4') ? 'opacity-100 mt-5' : 'mt-20 opacity-0'}`}>
@@ -269,11 +269,7 @@ export default function Home() {
         <div className="contace font_light flex flex-col gap-3">
           <div className="phone flex flex-col">
             <label>الهاتف</label>
-            <label>01023455435</label>
-          </div>
-          <div className="phone flex flex-col">
-            <label>البريد الالكتروني</label>
-            <label>yb2005at@gmail.com</label>
+            <label>01203316333</label>
           </div>
         </div>
       </div>

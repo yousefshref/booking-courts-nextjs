@@ -203,16 +203,21 @@ const CourtsContext = ({ children }) => {
 
 
   const createCourtImages = async (id, images) => {
-
+    images?.map((e) => console.log(e))
     const form = new FormData()
     images?.map(async (image) => {
       form.append('court', id)
       form.append('image', image)
-      const res = await axios.post(`${server}courts/images/create/`, form, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem('token')}`
-        }
-      })
+      try {
+        const res = await axios.post(`${server}courts/images/create/`, form, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('token')}`
+          }
+        })
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     })
     getCourt()
   }

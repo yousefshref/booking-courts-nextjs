@@ -6,7 +6,7 @@ const nextConfig = {
       "yousefshreef1.pythonanywhere.com",
       "sports.api.linkawyx.com",
     ],
-    unoptimized: true
+    unoptimized: true,
   },
 }
 
