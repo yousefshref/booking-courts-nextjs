@@ -120,6 +120,35 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-8">
 
+      {/* heaeder */}
+      <header className="max-w-2xl mx-auto w-full from-amber-100 shadow-md to-indigo-100 bg-gradient-to-br p-2 fixed z-50
+      translate-x-[-50%] left-[50%]
+      flex justify-around 
+      ">
+        {
+          !localStorage.getItem('token') ?
+            <>
+              <div>
+                <button className="successBtn">
+                  <a href="/auth/login">تسجيل الدخول</a>
+                </button>
+              </div>
+              <div>
+                <button className="successBtnBorder">
+                  <a href="/auth/register">حساب جديد</a>
+                </button>
+              </div>
+            </>
+            : (
+              <div>
+                <button className="successBtnBorder">
+                  <a href="/profile">حسابك</a>
+                </button>
+              </div>
+            )
+        }
+      </header>
+
       {/* landing */}
       <div className={
         `

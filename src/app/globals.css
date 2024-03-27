@@ -121,6 +121,9 @@ input[type="number"] {
 .successBtn {
   @apply p-1 rounded-md text-center bg-green-500 transition-all hover:bg-green-600 cursor-pointer flex text-white w-full justify-center self-center max-w-xs;
 }
+.successBtnBorder {
+  @apply p-1 rounded-md text-center border text-neutral-800 border-green-500 transition-all hover:bg-green-600 cursor-pointer flex w-full justify-center self-center max-w-xs;
+}
 .errorBtn {
   @apply p-1 rounded-md text-center bg-red-500 transition-all hover:bg-red-600 cursor-pointer flex text-white w-full justify-center self-center max-w-xs;
 }
