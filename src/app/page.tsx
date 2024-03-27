@@ -1,16 +1,13 @@
 'use client'
 import Image from "next/image";
 import { IoBookmarkOutline } from "react-icons/io5";
-import { MdOutlineContactSupport, MdOutlineLibraryBooks, MdOutlineSportsFootball } from "react-icons/md";
+import { MdOutlineContactSupport, MdOutlineLibraryBooks } from "react-icons/md";
 import { RiFootballFill, RiSearchEyeLine } from "react-icons/ri";
 import { LuPartyPopper } from "react-icons/lu";
 import { TfiSearch } from "react-icons/tfi";
-import { FaRegCirclePlay, FaRegUser } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
 import { FcInfo, FcRating, FcVip } from "react-icons/fc";
-import { CgClose } from "react-icons/cg";
 import { CourtsContextProvider } from "@/contexts/CourtsContext";
-import CourtComponent from "../components/Court/CourtComponent";
 import Link from "next/link";
 import { AuthContextProvider } from "@/contexts/AuthContext";
 
