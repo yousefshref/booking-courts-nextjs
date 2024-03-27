@@ -123,7 +123,7 @@ export default function Home() {
       flex justify-around 
       ">
         {
-          !localStorage.getItem('token') ?
+          !userContext?.user?.id ?
             <>
               <div>
                 <button className="successBtn">
